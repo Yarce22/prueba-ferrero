@@ -1,29 +1,29 @@
 import { ShoppingMenu } from "../../ShoppingMenu";
-import { Search } from "../../Search";
 import { useShoppingCartStore } from "../../../store/shoppingCart";
 
 import { FaShoppingCart } from "react-icons/fa";
+import { PiCoffeeBeanDuotone } from "react-icons/pi";
 
 const Header = () => {
-    const { isOpen, setIsOpen } = useShoppingCartStore();
+    const { isOpen, setIsOpen, shoppingList } = useShoppingCartStore();
 
     const handleShoppingMenu = () => {
         setIsOpen(!isOpen);
     }
+
     return (
         <header className="flex justify-between items-center w-screen p-6 border-b border-secondary">
-            <h1 className="text-primary text-2xl font-bold">Artesanos</h1>
-
-            <div>
-              <Search />
-            </div>
+            <h1 className="flex gap-2 items-center text-primary text-2xl font-bold">
+              <PiCoffeeBeanDuotone />
+              Artesanos
+            </h1>
 
             <div className="relative cursor-pointer" onClick={handleShoppingMenu}>
               <FaShoppingCart size={24} />
-              <span className="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full"></span>
+              {shoppingList.length > 0 && <span className="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full">{shoppingList.length}</span>}
             </div>
 
-            <ShoppingMenu isOpen={isOpen} handleShoppingMenu={handleShoppingMenu} />
+            {isOpen && <ShoppingMenu handleShoppingMenu={handleShoppingMenu} />}
         </header>
     )
 }
