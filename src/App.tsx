@@ -4,9 +4,11 @@ import { Header } from "./components/share/Header"
 import { Filter } from "./components/Filter"
 import { ProductsSection } from "./components/ProductsSection"
 import { useProductsStore } from "./store/products"
+import { useFiltersStore } from "./store/filters"
 
 function App() {
   const { products, setProducts } = useProductsStore()
+  const { filterProducts } = useFiltersStore()
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,11 +23,13 @@ function App() {
     fetchProducts()
   }, [setProducts])
 
+  const filteredProducts = filterProducts(products)
+
   return (
     <>
       <Header />
       <Filter />
-      <ProductsSection products={products}/>
+      <ProductsSection products={filteredProducts}/>
     </>
   )
 }

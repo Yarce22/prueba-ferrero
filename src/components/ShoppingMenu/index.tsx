@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useShoppingCartStore } from "../../store/shoppingCart";
 import type { ProductList } from "../../types/product";
 
@@ -13,6 +13,20 @@ interface ShoppingMenuProps {
 const ShoppingMenu: React.FC<ShoppingMenuProps> = ({ handleShoppingMenu }) => {
   const { shoppingList, setShoppingList } = useShoppingCartStore((state) => state);
   const [showPopup, setShowPopup] = useState(false);
+  const shoppingMenuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (shoppingMenuRef.current && !shoppingMenuRef.current.contains(event.target as Node)) {
+        handleShoppingMenu()
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [handleShoppingMenu])
 
   const handleRemoveProduct = (id: number) => {
     const newProductList = shoppingList.filter((product: ProductList) => product.id !== id)
@@ -33,7 +47,11 @@ const ShoppingMenu: React.FC<ShoppingMenuProps> = ({ handleShoppingMenu }) => {
 
   return (
     <>
-      <div className="absolute top-0 right-0 z-50 w-[90%] h-screen p-6 bg-white rounded-l-3xl shadow-[-17px_11px_30px_-23px_rgba(0,0,0,0.5)] md:w-auto">
+      <div
+        ref={shoppingMenuRef}
+        className="absolute top-0 right-0 z-50 w-[90%] h-screen p-6 bg-white rounded-l-3xl shadow-[-17px_11px_30px_-23px_rgba(0,0,0,0.5)] md:w-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div>
           <IoMdClose onClick={handleShoppingMenu} size={24} className="cursor-pointer justify-self-end" />
         </div>
@@ -63,7 +81,7 @@ const ShoppingMenu: React.FC<ShoppingMenuProps> = ({ handleShoppingMenu }) => {
                 <p>Subtotal: ${(shoppingList.reduce((total, product) => total + product.price * product.quantity, 0) - shoppingList.reduce((total, product) => total + product.price * product.quantity, 0) * 0.19).toFixed(2)}</p>
                 <p>IVA: ${(shoppingList.reduce((total, product) => total + product.price * product.quantity, 0) * 0.19).toFixed(2)}</p>
                 <p>Total: ${(shoppingList.reduce((total, product) => total + product.price * product.quantity, 0)).toFixed(2)}</p>
-                <button className="px-2 py-1 bg-secondary rounded-lg cursor-pointer flex items-center justify-center" onClick={handleBuy}>Comprar</button>
+                <button className="mt-2 px-2 py-1 bg-secondary rounded-lg cursor-pointer flex items-center justify-center" onClick={handleBuy}>Comprar</button>
               </div>
             </div>
           ) : (
@@ -78,7 +96,7 @@ const ShoppingMenu: React.FC<ShoppingMenuProps> = ({ handleShoppingMenu }) => {
             <div className="flex flex-col items-center text-center gap-4">
               <IoMdCheckmarkCircle size={64} className="text-green-500 animate-bounce" />
               <h2 className="text-2xl font-bold text-gray-800">¡Gracias por tu compra!</h2>
-              <p className="text-gray-600">Pronto llegará tu pedido a tu casa!</p>
+              <p className="text-gray-600">Pronto llegará tu pedido!</p>
             </div>
           </div>
         </div>

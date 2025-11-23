@@ -12,7 +12,7 @@ const Header = () => {
     }
 
     return (
-        <header className="flex justify-between items-center w-screen p-6 border-b border-secondary">
+        <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center w-screen p-6 bg-white border-b border-secondary">
             <h1 className="flex gap-2 items-center text-primary text-2xl font-bold">
               <PiCoffeeBeanDuotone />
               Artesanos

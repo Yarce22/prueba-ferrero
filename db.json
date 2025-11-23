@@ -5,56 +5,80 @@
       "name": "Café Arábica Premium",
       "description": "Chocolate, Caramelo, Nuez",
       "price": 18.99,
-      "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop"
+      "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",
+      "type": "bourbon",
+      "origin": "Colombia",
+      "roast": "Medio"
     },
     {
       "id": 2,
       "name": "Espresso Intenso",
       "description": "Cacao, Frutos Secos, Especias",
       "price": 22.50,
-      "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=400&fit=crop"
+      "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=400&fit=crop",
+      "type": "caturra",
+      "origin": "Brasil",
+      "roast": "Oscuro"
     },
     {
       "id": 3,
       "name": "Café Orgánico",
       "description": "Miel, Almendra, Cítricos",
       "price": 24.99,
-      "image": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=400&fit=crop"
+      "image": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=400&fit=crop",
+      "type": "colombia",
+      "origin": "Colombia",
+      "roast": "Claro"
     },
     {
       "id": 4,
       "name": "Café de Altura",
       "description": "Flores, Frutas Rojas, Cítricos",
       "price": 26.00,
-      "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=400&fit=crop"
+      "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=400&fit=crop",
+      "type": "gesha",
+      "origin": "Etiopía",
+      "roast": "Claro"
     },
     {
       "id": 5,
       "name": "Mezcla Casera",
       "description": "Caramelo, Chocolate con Leche, Vainilla",
       "price": 15.99,
-      "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=400&fit=crop"
+      "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=400&fit=crop",
+      "type": "castillo",
+      "origin": "Colombia",
+      "roast": "Medio"
     },
     {
       "id": 6,
       "name": "Café Tostado Oscuro",
       "description": "Chocolate Oscuro, Ahumado, Madera",
       "price": 20.50,
-      "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop"
+      "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop",
+      "type": "tipica",
+      "origin": "Guatemala",
+      "roast": "Oscuro"
     },
     {
       "id": 7,
       "name": "Café Descafeinado",
       "description": "Avellana, Caramelo, Chocolate",
       "price": 19.99,
-      "image": "https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400&h=400&fit=crop"
+      "image": "https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400&h=400&fit=crop",
+      "type": "bourbon",
+      "origin": "Costa Rica",
+      "roast": "Medio"
     },
     {
       "id": 8,
       "name": "Café con Vainilla",
       "description": "Vainilla, Crema, Azúcar Morena",
       "price": 21.99,
-      "image": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&h=400&fit=crop"
+      "image": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&h=400&fit=crop",
+      "type": "caturra",
+      "origin": "Perú",
+      "roast": "Claro"
     }
   ]
 }

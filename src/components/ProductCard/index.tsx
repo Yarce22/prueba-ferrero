@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useShoppingCartStore } from "../../store/shoppingCart";
-import type { Product } from "../../types/product"
+import type { Product, ProductList } from "../../types/product"
 
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 
@@ -15,10 +15,35 @@ const ProductCard = ({ product }: { product: Product }) => {
       }
     }, [setShoppingList])
 
+    const findProductInCart = (productId: number): ProductList | undefined => {
+      return shoppingList.find((p: ProductList) => p.id === productId)
+    }
+
+    const updateProductQuantity = (productId: number, quantityToAdd: number): ProductList[] => {
+      return shoppingList.map((p: ProductList) =>
+        p.id === productId
+          ? { ...p, quantity: p.quantity + quantityToAdd }
+          : p
+      )
+    }
+
+    const addNewProductToCart = (newProduct: Product, productQuantity: number): ProductList[] => {
+      return [...shoppingList, { ...newProduct, quantity: productQuantity }]
+    }
+
+    const saveToLocalStorage = (list: ProductList[]) => {
+      window.localStorage.setItem("shoppingList", JSON.stringify(list))
+    }
+
     const handleAddToCart = () => {
-      const addProduct = [...shoppingList, { ...product, quantity }]
-      setShoppingList(addProduct)
-      window.localStorage.setItem("shoppingList", JSON.stringify(addProduct))
+      const existingProduct = findProductInCart(product.id)
+
+      const updatedList = existingProduct
+        ? updateProductQuantity(product.id, quantity)
+        : addNewProductToCart(product, quantity)
+
+      setShoppingList(updatedList)
+      saveToLocalStorage(updatedList)
     }
 
     return (
