@@ -1,16 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useShoppingCartStore } from "../../store/shoppingCart";
-import type { Product, ProductList } from "../../types/product"
+import type { Product } from "../../types/product"
 
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 
 const ProductCard = ({ product }: { product: Product }) => {
-    const [quantity, setQuantity] = useState<number>(0)
-    const {setShoppingList} = useShoppingCartStore()
+    const [quantity, setQuantity] = useState<number>(1)
+    const {setShoppingList, shoppingList} = useShoppingCartStore()
+
+    useEffect(() => {
+      const storedList = window.localStorage.getItem("shoppingList")
+      if (storedList) {
+        setShoppingList(JSON.parse(storedList))
+      }
+    }, [setShoppingList])
 
     const handleAddToCart = () => {
-      if (quantity === 0) return;
-      setShoppingList((prevList: ProductList[]) => [...prevList, { ...product, quantity }])
+      const addProduct = [...shoppingList, { ...product, quantity }]
+      setShoppingList(addProduct)
+      window.localStorage.setItem("shoppingList", JSON.stringify(addProduct))
     }
 
     return (
@@ -25,7 +33,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           <div className="flex items-center gap-2">
             <button
               className="bg-secondary w-6 h-6 rounded-lg cursor-pointer flex items-center justify-center"
-              onClick={() => setQuantity(quantity <= 0 ? 0 : quantity - 1)}
+              onClick={() => setQuantity(quantity <= 1 ? 1 : quantity - 1)}
             >
               <IoMdRemove />
             </button>
