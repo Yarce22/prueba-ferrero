@@ -37,7 +37,12 @@ Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 18 o supe
 ### 2. Clonar el repositorio
 
 ```bash
-git clone <url-del-repositorio>
+git clone git@github.com:Yarce22/prueba-ferrero.git
+cd prueba-ferrero-machine
+```
+o
+```bash
+git clone https://github.com/Yarce22/prueba-ferrero.git
 cd prueba-ferrero-machine
 ```
 
