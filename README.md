@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# ☕ Artesanos - Tienda de Café Premium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Artesanos** es una aplicación web moderna de comercio electrónico diseñada para la venta de café de especialidad. Ofrece una experiencia de usuario fluida y elegante, permitiendo a los clientes explorar variedades de café, filtrar por origen y tipo, y gestionar su carrito de compras de manera intuitiva.
 
-Currently, two official plugins are available:
+## ✨ Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Catálogo de Productos**: Visualización atractiva de productos con tarjetas detalladas.
+- **Filtrado Avanzado**: Sistema de filtros por **Tipo de Café** (Bourbon, Caturra, Geisha, etc.), **Origen** y **Nivel de Tostado**.
+- **Búsqueda en Tiempo Real**: Barra de búsqueda para encontrar productos por nombre instantáneamente.
+- **Carrito de Compras**:
+  - Agregar y eliminar productos.
+  - Ajustar cantidades.
+  - Cálculo automático de Subtotal, IVA y Total.
+  - Persistencia de datos en `localStorage` (el carrito no se pierde al recargar).
+- **Diseño Responsivo**: Interfaz adaptada a dispositivos móviles y escritorio.
 
-## React Compiler
+## 🛠️ Tecnologías Utilizadas
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Este proyecto fue construido utilizando un stack moderno para asegurar rendimiento, mantenibilidad y escalabilidad:
 
-## Expanding the ESLint configuration
+- **[React 19](https://react.dev/)**: Biblioteca principal para construir la interfaz de usuario basada en componentes.
+- **[TypeScript](https://www.typescriptlang.org/)**: Añade tipado estático a JavaScript, mejorando la seguridad del código y la experiencia de desarrollo (autocompletado, detección de errores).
+- **[Vite](https://vitejs.dev/)**: Entorno de desarrollo de próxima generación, mucho más rápido que CRA.
+- **[Zustand](https://zustand-demo.pmnd.rs/)**: Gestor de estado global. Se eligió por su simplicidad, ligereza y falta de "boilerplate" en comparación con Redux.
+- **[Tailwind CSS v4](https://tailwindcss.com/)**: Framework de CSS "utility-first" para un diseño rápido, consistente y responsivo.
+- **[React Icons](https://react-icons.github.io/react-icons/)**: Colección de iconos populares para la UI.
+- **[JSON Server](https://github.com/typicode/json-server)**: Simula una API REST completa para el desarrollo frontend sin necesidad de un backend real.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Instalación y Ejecución
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Sigue estos pasos para correr el proyecto en tu máquina local:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Prerrequisitos
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 18 o superior recomendada).
+
+### 2. Clonar el repositorio
+
+```bash
+git clone <url-del-repositorio>
+cd prueba-ferrero-machine
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3. Instalar dependencias
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 4. Ejecutar el servidor de desarrollo
+
+Necesitarás dos terminales corriendo simultáneamente:
+
+**Terminal 1: Servidor de Base de Datos (Mock)**
+
+```bash
+npm run server
+```
+
+Esto iniciará `json-server` en el puerto `3001` para servir los productos.
+
+**Terminal 2: Aplicación Frontend**
+
+```bash
+npm run dev
+```
+
+Esto iniciará la aplicación React con Vite.
+
+### 5. Abrir en el navegador
+
+Visita la URL que aparece en la terminal (usualmente `http://localhost:5173`).
+
+## 📂 Estructura del Proyecto
+
+```
+src/
+├── components/      # Componentes reutilizables (Header, ProductCard, Filter, etc.)
+├── store/           # Estados globales con Zustand (filters, shoppingCart, products)
+├── types/           # Definiciones de tipos TypeScript (Product, ProductList)
+├── App.tsx          # Componente principal y orquestador
+└── main.tsx         # Punto de entrada de la aplicación
+```
+
+---
+
+Desarrollado por [Alejandro Mira/Yarce22]
