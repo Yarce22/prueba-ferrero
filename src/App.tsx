@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 
 import { Header } from "./components/share/Header"
+import { Footer } from "./components/share/Footer"
 import { Filter } from "./components/Filter"
 import { ProductsSection } from "./components/ProductsSection"
 import { useProductsStore } from "./store/products"
@@ -30,6 +31,7 @@ function App() {
       <Header />
       <Filter />
       <ProductsSection products={filteredProducts}/>
+      <Footer />
     </>
   )
 }
