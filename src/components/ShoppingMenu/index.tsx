@@ -15,6 +15,10 @@ const ShoppingMenu: React.FC<ShoppingMenuProps> = ({ handleShoppingMenu }) => {
   const [showPopup, setShowPopup] = useState(false);
   const shoppingMenuRef = useRef<HTMLDivElement>(null)
 
+  const iva = shoppingList.reduce((total, product) => total + product.price * product.quantity, 0) * 0.19
+  const subtotal = shoppingList.reduce((total, product) => total + product.price * product.quantity, 0) - iva
+  const total = subtotal + iva
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (shoppingMenuRef.current && !shoppingMenuRef.current.contains(event.target as Node)) {
@@ -78,9 +82,9 @@ const ShoppingMenu: React.FC<ShoppingMenuProps> = ({ handleShoppingMenu }) => {
               </ul>
 
               <div className="justify-self-end">
-                <p>Subtotal: ${(shoppingList.reduce((total, product) => total + product.price * product.quantity, 0) - shoppingList.reduce((total, product) => total + product.price * product.quantity, 0) * 0.19).toFixed(2)}</p>
-                <p>IVA: ${(shoppingList.reduce((total, product) => total + product.price * product.quantity, 0) * 0.19).toFixed(2)}</p>
-                <p>Total: ${(shoppingList.reduce((total, product) => total + product.price * product.quantity, 0)).toFixed(2)}</p>
+                <p>Subtotal: ${(subtotal).toFixed(2)}</p>
+                <p>IVA: ${iva.toFixed(2)}</p>
+                <p>Total: ${total.toFixed(2)}</p>
                 <button className="mt-2 px-2 py-1 bg-secondary rounded-lg cursor-pointer flex items-center justify-center" onClick={handleBuy}>Comprar</button>
               </div>
             </div>
